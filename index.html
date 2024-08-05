@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Guitar Note Learning Quiz Game</title>
+</head>
+<body>
+    <div class="container">
+        <div class="output">
+            <h1 id="title">Welcome To Guitar Note Learning: A Tool to Help You Memorize The Fretboard</h1>
+            <h2 id="subtitle">Let's Start</h2>
+            <button class="noteButton" onclick="showInfo()">INFO</button>
+            <div class="question">
+                <p id="question">Questions Will Appear Here</p>
+                <button id="lastButton" class="noteButton" onclick="previousQuestion()" disabled>Previous Question</button>
+                <button id="nextButton" class="noteButton" onclick="getQuestion()">Get Question</button>
+
+            </div>
+        </div>
+        <div class="answerOutput">
+            <button id="a1" class="noteButton" onclick="backSpace(1)"> </button>
+            <button id="a2" class="noteButton" onclick="backSpace(2)"> </button>
+            <button id="a3" class="noteButton" onclick="backSpace(3)"> </button>
+            <button id="a4" class="noteButton" onclick="backSpace(4)"> </button>
+            <button id="a5" class="noteButton" onclick="backSpace(5)"> </button>
+            <button id="a6" class="noteButton" onclick="backSpace(6)"> </button>
+            <button id="a7" class="noteButton" onclick="backSpace(7)"> </button>
+        </div>
+        <div class="modifiers">
+            <button class="noteButton" onclick="addAnswer('#')">#</button>
+            <button class="noteButton" onclick="addAnswer('b')">b</button>
+
+        </div>
+        <div class="controls">
+            <button class="noteButton" onclick="addAnswer('A')">A</button>
+            <button class="noteButton" onclick="addAnswer('B')">B</button>
+            <button class="noteButton" onclick="addAnswer('C')">C</button>
+            <button class="noteButton" onclick="addAnswer('D')">D</button>
+            <button class="noteButton" onclick="addAnswer('E')">E</button>
+            <button class="noteButton" onclick="addAnswer('F')">F</button>
+            <button class="noteButton" onclick="addAnswer('G')">G</button>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
