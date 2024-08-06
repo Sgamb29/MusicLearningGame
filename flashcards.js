@@ -122,10 +122,7 @@ const numberOfStrings = strings.length;
 
 function getQuestion() {
     const nextButton = document.getElementById("nextButton");
-    console.log(strings);
-    console.log(getRandomInt(numberOfStrings));
     currentQuestion = strings[getRandomInt(numberOfStrings)];
-    console.log(currentQuestion);
 
     refreshElements();
     const randomNoteIndex = getRandomInt(currentQuestion.notes.length);

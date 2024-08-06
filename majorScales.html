@@ -9,18 +9,18 @@
 <body>
     <div class="container">
         <div class="nav">
-            <a class="currentPage" href="index.html">Positions</a>
+            <a href="index.html">Positions</a>
             <a href="flashcards.html">Flashcards</a>
-            <a href="majorScales.html">Major Scales</a>
+            <a class="currentPage" href="majorScales.html">Major Scales</a>
 
         </div>
         <div class="output">
             <h1 id="title">Welcome To Guitar Note Learning: A Tool to Help You Memorize The Fretboard</h1>
-            <h2 id="subtitle">Let's Start</h2>
+            <h2 id="subtitle">Major Scales Learning</h2>
             <button class="noteButton" onclick="showInfo()">INFO</button>
             <div class="question">
-                <p id="question">Questions for Fretboard Positions Will Appear Here</p>
-                <button id="lastButton" class="noteButton" onclick="previousQuestion()" disabled>Previous Question</button>
+                <p id="question">Questions for the Major Scales Will Appear Here</p>
+                <button id="hideInfoBtn" class="noteButton" hidden onclick="showInfo()">Hide Info</button>
                 <button id="nextButton" class="noteButton" onclick="getQuestion()">Get Question</button>
 
             </div>
@@ -51,6 +51,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="scales.js"></script>
 </body>
 </html>

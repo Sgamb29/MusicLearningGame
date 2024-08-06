@@ -62,3 +62,7 @@ a {
 .answerOutput {
     margin-top: 10px;
 }
+
+.currentPage {
+    background-color: green;
+}
