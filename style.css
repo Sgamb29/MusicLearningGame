@@ -61,7 +61,10 @@ a {
 .nav {
     margin-top: 12px;
     display: flex;
+    flex-direction: row;
 }
+
+
 
 .answerOutput {
     margin-top: 10px;
@@ -69,4 +72,14 @@ a {
 
 .currentPage {
     background-color: green;
+}
+
+.section {
+    border: 1px solid black;
+}
+
+.jumpAround {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
