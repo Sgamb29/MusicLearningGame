@@ -44,10 +44,20 @@ class Question {
 
     checkForSuccess() {
         if (this.correctAmount == this.answerlength) {
-            document.getElementById("question").innerText = "Lesson Success!";
+            lessonCompleteCount += 1;
+            let isPlural = " Lesson";
+            if (lessonCompleteCount > 1) {
+                isPlural = " Lessons";
+            }
+            document.getElementById("question").innerText = "Lesson Success! " + lessonCompleteCount.toString() + isPlural + " Done.";
             return true;
         }
         return false;
+    }
+
+    resetQuestionProgress() {
+        this.currentAnswerText = "";
+        this.correctAmount = 0;
     }
 
 }
@@ -81,9 +91,9 @@ function addAnswer(note) {
         answerIndex += 1;
     }
     let isDone = currentQuestion.checkForSuccess();
-    if (isDone && currentQuestionIndex == numberOfQuestions - 1) {
-        document.getElementById("question").innerText = "All Lessons Complete!"
-    }
+    
+    
+   
 }
 
 function backSpace(i) {
@@ -96,6 +106,7 @@ function backSpace(i) {
 }
 
 // Main VARIABLES Here
+
 
 const lowE03579 = new Question("Name the Low E String Notes from Frets Open, 3, 5, 7, and 9.", ["E", "G", "A", "B", "C#"], 5);
 const A03579 = new Question("Name the A String Notes from Frets Open, 3, 5, 7, and 9.", ["A", "C", "D", "E", "F#"], 5);
@@ -112,6 +123,12 @@ const G246810 = new Question("Name the G String Notes from Frets 2, 4, 6, 8, 10"
 const B246810 = new Question("Name the B String Notes from Frets 2, 4, 6, 8, 10", ["C#", "D#", "F", "G", "A"], 5);
 const e246810 = new Question("Name the high E String Notes from Frets 2, 4, 6, 8, 10", ["F#", "G#", "A#", "C", "D"], 5);
 
+const allStringsFret3 = new Question("From the low E string to the high e string, name all the notes on the 3rd fret.", ["G", "C", "F", "A#", "D", "G"], 6);
+const allStringsFret5 = new Question("From the low E string to the high e string, name all the notes on the 5th fret.", ["A", "D", "G", "C", "E", "A"], 6);
+const allStringsFret7 = new Question("From the low E string to the high e string, name all the notes on the 7th fret.", ["B", "E", "A", "D", "F#", "B"], 6);
+const allStringsFret9 = new Question("From the low E string to the high e string, name all the notes on the 9th fret.", ["C#", "F#", "B", "E", "G#", "C#"], 6);
+
+
 
 
 
@@ -119,32 +136,27 @@ const e246810 = new Question("Name the high E String Notes from Frets 2, 4, 6, 8
 
 let currentQuestion = "";
 
+// Used to get the right element for current question progress
 let answerIndex = 1;
 
 
 
-let questions = [lowE03579, A03579, D03579, G03579, B03579, e03579, lowE246810, A246810, D246810, G246810, B246810, e246810];
+let questions = [lowE03579, A03579, D03579, G03579, B03579, e03579, lowE246810, A246810, D246810, G246810, B246810, e246810,
+                allStringsFret9, allStringsFret7, allStringsFret5, allStringsFret3
+                ];
 let numberOfQuestions = questions.length;
 let currentQuestionIndex = 0;
+
+let lessonCompleteCount = 0;
 
 // Main Runtime Logic Here
 
 function getQuestion() {
-    const nextButton = document.getElementById("nextButton");
-    if (nextButton.innerText == "Next Question" && currentQuestionIndex + 1 < numberOfQuestions) {
-        currentQuestionIndex += 1;
-    } else if (currentQuestionIndex + 1 == numberOfQuestions) {
-        currentQuestionIndex = 0;
+    if (currentQuestion != "") {
+        currentQuestion.resetQuestionProgress();
     }
-
+    currentQuestionIndex = getRandomInt(numberOfQuestions);
     setUpQuestion();
-    if (nextButton.innerText == "Get Question") {
-        nextButton.innerText = "Next Question";
-    }
-
-    if (currentQuestionIndex > 0) {
-        document.getElementById("lastButton").disabled = false;
-    }
     
 
 }
@@ -156,17 +168,7 @@ function setUpQuestion() {
     hideUnusedElements(currentQuestion.answerlength);
 }
 
-function previousQuestion() {
-    if (currentQuestionIndex -1 >= 0) {
-        currentQuestionIndex -= 1;
-       
-    } 
-    if (currentQuestionIndex == 0) {
-        currentQuestionIndex = numberOfQuestions - 1;
-    }  
-    setUpQuestion();  
-    
-}
+
 
 function showInfo() {
     const el = document.getElementById("question");
@@ -178,4 +180,9 @@ function showInfo() {
     } else {
         el.innerText = infoText;
     }
+}
+
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
 }
