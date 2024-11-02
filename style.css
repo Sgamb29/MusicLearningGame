@@ -86,3 +86,8 @@ a {
     flex-wrap: wrap;
     justify-content: center;
 }
+
+footer {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
