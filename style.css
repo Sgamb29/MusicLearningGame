@@ -47,6 +47,8 @@ html, body {
     margin-bottom: 8px;
     border: 2px solid black;
     background-color: lightcyan;
+    color: black;
+    padding: 3px;
 }
 
 a {
@@ -90,4 +92,12 @@ a {
 footer {
     margin-top: 20px;
     margin-bottom: 10px;
+}
+
+
+.controls, .answerOutput {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
 }
