@@ -145,7 +145,10 @@ const fourthDown = new Pitch("4th", "./assets/4thDown.mp3", "interval");
 const fifthUp = new Pitch("5th", "./assets/5thUp.mp3", "interval");
 const fifthDown = new Pitch("5th", "./assets/5thDown.mp3", "interval");
 
-
+const secHarmonic = new Pitch("2nd", "./assets/2ndHarmonic.mp3", "interval");
+const thirdHarmonic = new Pitch("3rd", "./assets/3rdHarmonic.mp3", "interval");
+const fourthHarmonic = new Pitch("4th", "./assets/4thHarmonic.mp3", "interval");
+const fifthHarmonic = new Pitch("5th", "./assets/5thHarmonic.mp3", "interval");
 
 
 
@@ -167,7 +170,7 @@ let lessonCount = 0;
 const pitches = [
     aNote, bNote, cNote, dNote, eNote, fNote, gNote, a2Note, b2Note, c2Note,
     d2Note, e2Note, f2Note, g2Note, secUp, secDown, thirdDown, thirdUp, fourthDown, fourthUp,
-    fifthDown, fifthUp
+    fifthDown, fifthUp, secHarmonic, thirdHarmonic, fourthHarmonic, fifthHarmonic
                     ];
 const numberOfPitches = pitches.length;
 
@@ -220,7 +223,7 @@ function getRandomInt(max) {
 
 function showInfo() {
     const el = document.getElementById("question");
-    const infoText = "Listen to the note or interval and try to get the right answer!\n\nInterval Info: A 2nd interval is going up or down by 1 note or step in a scale, a 3rd interval is going up or down by 2 steps, a 4th by 3 and a 5th by 4.\nEx: Going from C to G is a fifth, and going from C to E is a third.\nThe intervals you'll be listening to are called melodic intervals because they are played one after the other instead of held at the same time (harmonic intervals).";
+    const infoText = "Listen to the note or interval and try to get the right answer!\n\nInterval Info: A 2nd interval is going up or down by 1 note or step in a scale, a 3rd interval is going up or down by 2 steps, a 4th by 3 and a 5th by 4.\nEx: Going from C to G is a fifth, and going from C to E is a third.\nMelodic intervals are notes played one after the other. Harmonic intervals are notes held at the same time.";
     if (el.innerText == infoText && currentQuestion != "") {
         currentQuestion.displayQuestion();
     } else if (el.innerText == infoText) {
