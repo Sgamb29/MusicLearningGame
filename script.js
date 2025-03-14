@@ -186,3 +186,16 @@ function showInfo() {
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
+
+
+// Traffic
+const request = new Request("https://server.sgambapps.com/?site=musicGame", {
+    method: "POST",
+});
+fetch(request)
+.then(res => {
+    if (res.ok) {
+    console.log("visit counted");
+    }
+})
+.catch(err => console.log(err));
