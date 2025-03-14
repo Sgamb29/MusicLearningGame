@@ -3,28 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Flashcards for naming the notes on the guitar fretboard.">
     <link rel="stylesheet" href="style.css">
-    <title>Guitar Note Learning Quiz Game: Flashcards</title>
+    <title>Note Learning Quiz Game: Natural Minors and Pentatonics</title>
 </head>
 <body>
     <div class="container">
         <div class="nav">
             <a href="index.html">Positions</a>
-            <a class="currentPage" href="flashcards.html">Flashcards</a>
+            <a href="flashcards.html">Flashcards</a>
             <a href="majorScales.html">Major Scales</a>
         </div>
         <div class="nav">
             <a href="theory.html">Music Theory</a>
-            <a href="minorsAndPentatonics.html">Natural Minors / Pentatonics</a>
+            <a class="currentPage" href="minorsAndPentatonics.html">Natural Minors / Pentatonics</a>
             <a href="pitchTraining.html">Pitch Training</a>
         </div>
         <div class="output">
             <h1 id="title">Welcome To Guitar Note Learning: A Tool to Help You Memorize The Fretboard</h1>
-            <h2 id="subtitle">Fretboard Flash Cards</h2>
+            <h2 id="subtitle">Natural Minors and Pentatonics</h2>
             <button class="noteButton" onclick="showInfo()">INFO</button>
             <div class="question">
-                <p id="question">Flashcards Will Appear Here</p>
+                <p id="question"></p>
                 <button id="nextButton" class="noteButton" onclick="getQuestion()">Get Question</button>
 
             </div>
@@ -51,10 +50,15 @@
             <button class="noteButton" onclick="addAnswer('E')">E</button>
             <button class="noteButton" onclick="addAnswer('F')">F</button>
             <button class="noteButton" onclick="addAnswer('G')">G</button>
+            <button class="noteButton" onclick="addAnswer('2nd')">2nd</button>
+            <button class="noteButton" onclick="addAnswer('4th')">4th</button>
+            <button class="noteButton" onclick="addAnswer('6th')">6th</button>
+            <button class="noteButton" onclick="addAnswer('7th')">7th</button>
 
         </div>
+
     </div>
 
-    <script src="flashcards.js"></script>
+    <script src="minorsAndPentatonics.js"></script>
 </body>
 </html>
