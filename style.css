@@ -101,3 +101,7 @@ footer {
     justify-content: center;
     flex-wrap: wrap;
 }
+
+.extraButton {
+    font-size: medium;
+}

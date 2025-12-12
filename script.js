@@ -1,16 +1,42 @@
 
+class Guitar {
+    num_strings = 6;
 
+    fretboard =  {
+        "E": ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
+        "A": ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
+        "D": ["D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D"],
+        "G": ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"],
+        "B": ["B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"],
+        "e": ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
+    }
 
+    positions = {
+        "0": [],
+        "3": [],
+        "5": [],
+        "7": [],
+        "10": [],
+    }
+
+    loadPositions() {
+        Object.keys(this.positions).forEach((p) => {
+            Object.keys(this.fretboard).forEach((f) => {
+                this.positions[p].push(this.fretboard[f][parseInt(p)]);
+            })
+        })
+    }
+}
 
 class Question {
-
     currentAnswerText = "";
     correctAmount = 0;
+    answerlength = 0;
 
-    constructor(question, answers, answerlength) {
+    constructor(question, answers) {
         this.question = question;
         this.answers = answers;
-        this.answerlength = answerlength;
+        this.answerlength = answers.length;
     }
 
     displayQuestion() {
@@ -62,8 +88,6 @@ class Question {
 
 }
 
-
-
 function hideUnusedElements(len) {
     for (let i = len + 1; i < 8; i++) {
         document.getElementById("a" + i.toString()).hidden = true;
@@ -91,9 +115,6 @@ function addAnswer(note) {
         answerIndex += 1;
     }
     let isDone = currentQuestion.checkForSuccess();
-    
-    
-   
 }
 
 function backSpace(i) {
@@ -102,36 +123,19 @@ function backSpace(i) {
         pressed.innerText = "";
         pressed.style.backgroundColor = "white";
     }
-    
 }
 
 // Main VARIABLES Here
+const guitar = new Guitar();
+guitar.loadPositions();
 
+const positionsPrefix = "From the low E string to the high e string, name all the "
 
-const lowE03579 = new Question("Name the Low E String Notes from Frets Open, 3, 5, 7, and 9.", ["E", "G", "A", "B", "C#"], 5);
-const A03579 = new Question("Name the A String Notes from Frets Open, 3, 5, 7, and 9.", ["A", "C", "D", "E", "F#"], 5);
-const D03579 = new Question("Name the D String Notes from Frets Open, 3, 5, 7, and 9.", ["D", "F", "G", "A", "B"], 5);
-const G03579 = new Question("Name the G String Notes from Frets Open, 3, 5, 7, and 9.", ["G", "A#", "C", "D", "E"], 5);
-const B03579 = new Question("Name the B String Notes from Frets Open, 3, 5, 7, and 9.", ["B", "D", "E", "F#", "G#"], 5);
-const e03579 = new Question("Name the high E String Notes from Frets Open, 3, 5, 7, and 9.", ["E", "G", "A", "B", "C#"], 5);
-
-
-const lowE246810 = new Question("Name The Low E String Notes from Frets 2, 4, 6, 8, and 10.", ["F#", "G#", "A#", "C", "D"], 5);
-const A246810 = new Question("Name the A String Notes from Frets 2, 4, 6, 8, 10", ["B", "C#", "D#", "F", "G"], 5);
-const D246810 = new Question("Name the D String Notes from Frets 2, 4, 6, 8, 10", ["E", "F#", "G#", "A#", "C"], 5);
-const G246810 = new Question("Name the G String Notes from Frets 2, 4, 6, 8, 10", ["A", "B", "C#", "D#", "F"], 5);
-const B246810 = new Question("Name the B String Notes from Frets 2, 4, 6, 8, 10", ["C#", "D#", "F", "G", "A"], 5);
-const e246810 = new Question("Name the high E String Notes from Frets 2, 4, 6, 8, 10", ["F#", "G#", "A#", "C", "D"], 5);
-
-const allStringsFret3 = new Question("From the low E string to the high e string, name all the notes on the 3rd fret.", ["G", "C", "F", "A#", "D", "G"], 6);
-const allStringsFret5 = new Question("From the low E string to the high e string, name all the notes on the 5th fret.", ["A", "D", "G", "C", "E", "A"], 6);
-const allStringsFret7 = new Question("From the low E string to the high e string, name all the notes on the 7th fret.", ["B", "E", "A", "D", "F#", "B"], 6);
-const allStringsFret9 = new Question("From the low E string to the high e string, name all the notes on the 9th fret.", ["C#", "F#", "B", "E", "G#", "C#"], 6);
-
-
-
-
-
+const allStringsFret0 = new Question(positionsPrefix + "open notes.", guitar.positions["0"]);
+const allStringsFret3 = new Question(positionsPrefix + "notes on the 3rd fret.", guitar.positions["3"]);
+const allStringsFret5 = new Question(positionsPrefix + "notes on the 5th fret.", guitar.positions["5"]);
+const allStringsFret7 = new Question(positionsPrefix + "notes on the 7th fret.", guitar.positions["7"]);
+const allStringsFret9 = new Question(positionsPrefix + "notes on the 10th fret.", guitar.positions["10"]);
 
 
 let currentQuestion = "";
@@ -139,10 +143,8 @@ let currentQuestion = "";
 // Used to get the right element for current question progress
 let answerIndex = 1;
 
-
-
-let questions = [lowE03579, A03579, D03579, G03579, B03579, e03579, lowE246810, A246810, D246810, G246810, B246810, e246810,
-                allStringsFret9, allStringsFret7, allStringsFret5, allStringsFret3
+let questions = [
+        allStringsFret0, allStringsFret9, allStringsFret7, allStringsFret5, allStringsFret3
                 ];
 let numberOfQuestions = questions.length;
 let currentQuestionIndex = 0;
@@ -150,29 +152,48 @@ let currentQuestionIndex = 0;
 let lessonCompleteCount = 0;
 
 // Main Runtime Logic Here
-
 function getQuestion() {
     if (currentQuestion != "") {
         currentQuestion.resetQuestionProgress();
     }
     currentQuestionIndex = getRandomInt(numberOfQuestions);
     setUpQuestion();
-    
+}
 
+let pastQuestions = [];
+
+function isInPastQuestions(current) {
+    let isIn = false;
+    pastQuestions.forEach((q) => {
+        if (current === q) {
+            isIn = true;
+        }
+    });
+    return isIn;
 }
 
 function setUpQuestion() {
     refreshElements();
     currentQuestion = questions[currentQuestionIndex];
+    // Get different question if already answered.
+    let count = 0;
+    while (isInPastQuestions(currentQuestion)) {
+        currentQuestionIndex = getRandomInt(numberOfQuestions);
+        currentQuestion = questions[currentQuestionIndex];
+        count += 1;
+        // clear past questions because it's full
+        if (count >= 20) {
+            pastQuestions = [];
+        }
+    }
+    pastQuestions.push(currentQuestion);
     currentQuestion.displayQuestion();
     hideUnusedElements(currentQuestion.answerlength);
 }
 
-
-
 function showInfo() {
     const el = document.getElementById("question");
-    const infoText = "Info: The notes of the open strings from the low E (thickest string) to the high e (thinest string) are E A D G B e.\nFor every consecutive fret on a string the note you are playing goes up by a 'half step'. A half step up of every note except B and E goes to a sharp: '#'. So G goes up a half step to G# and A goes up a half step to A#, but B goes up a half step right to C and E goes up a half step right to F.\nWhen you get to G# the notes start again from A, and that's how you can count frets to find out what note you are on!\nWith enough practice you will start remembering what notes are on what frets, making it easier to play scales, find chords, etc!"
+    const infoText = "The open string notes from low E (thickest string) to high e (thinest string) are E A D G B e.\nFor every consecutive fret on a string the note you are playing goes up by a 'half step'. A half step up of every note, except B and E goes to a sharp: '#'. So G goes up a half step to G# and A goes up a half step to A#, but B goes up a half step right to C and E goes up a half step right to F.\nAfter G# the notes start again from A, and that's how you count frets to find out what note you are on!\n"
     if (el.innerText == infoText && currentQuestion != "") {
         currentQuestion.displayQuestion();
     } else if (el.innerText == infoText) {
@@ -182,20 +203,29 @@ function showInfo() {
     }
 }
 
-
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-
 // Traffic
-const request = new Request("https://server.sgambapps.com/?site=musicGame", {
-    method: "POST",
-});
-fetch(request)
-.then(res => {
-    if (res.ok) {
-    console.log("visit counted");
-    }
-})
-.catch(err => console.log(err));
+const fetchKey = "lastFetch";
+let toFetch = true;
+const now = new Date();
+const dotw = now.getDay();
+const lastFetch = localStorage.getItem(fetchKey);
+toFetch = dotw.toString() !== lastFetch;
+
+if (toFetch) {
+    const request = new Request("https://server.sgambapps.com/?site=musicGame", {
+        method: "POST",
+    });
+
+    fetch(request)
+    .then(res => {
+        if (res.ok) {
+        console.log("visit counted");
+        }
+    })
+    .catch(err => console.log(err));
+    localStorage.setItem(fetchKey, dotw.toString());
+}
